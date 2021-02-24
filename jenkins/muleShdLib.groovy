@@ -1,3 +1,4 @@
+import groovy.json.JsonSlurper
 def MULE_ENV = ''
 def KEY = ''
 def API_ID = ''
@@ -14,6 +15,7 @@ def ANYPOINT_PLATFORM_URL=''
 
 def MULESOFT_USER = ''
 def MULESOFT_PASSWORD = ''
+def slurper = new JsonSlurper()
 
 
 
@@ -98,11 +100,10 @@ def setWorkspaceVariables(branch) {
 def retrieveMulesoftVariables() {
 
     //println "retrieve mulesoft variables"
-
-    env.ACCESS_TOKEN = sh (
-        script: "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\' | jq --raw-output .access_token",
-        returnStdout: true
-    ).trim()
+    url = "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\'"
+    env.ACCESS_TOKEN = slurper.parseText(url.execute().text).access_token
+        //script: "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\' | jq --raw-output .access_token"
+    //).trim()
 
     println "${env.ACCESS_TOKEN}"
     BUSINESS_GROUP_NAME = sh (
