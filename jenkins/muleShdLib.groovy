@@ -100,7 +100,8 @@ def retrieveMulesoftVariables() {
 
     slurper = new JsonSlurper()
     //println "retrieve mulesoft variables"
-    url = "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\'"
+    url = "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}"
+    println url;
     println url.execute().text
     env.ACCESS_TOKEN = slurper.parseText(url.execute().text).access_token
         //script: "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\' | jq --raw-output .access_token"
