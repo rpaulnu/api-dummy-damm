@@ -62,7 +62,6 @@ environment {
 		//}
 	}
 
-}
 
 
 def setWorkspaceVariables(branch) {
