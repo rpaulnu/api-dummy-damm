@@ -102,6 +102,7 @@ def retrieveMulesoftVariables() {
         returnStdout: true
     ).trim()
 
+    println "${env.ACCESS_TOKEN}"
     BUSINESS_GROUP_NAME = sh (
         script: """set +x;curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq .user.contributorOfOrganizations[].name""",
         returnStdout: true
