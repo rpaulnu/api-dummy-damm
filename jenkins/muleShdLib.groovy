@@ -24,7 +24,8 @@ environment {
 		//container('mule-builder') {
 			script {
 				try {
-                    setWorkspaceVariables(env.BRANCH_NAME)
+                    print "${BRANCH_NAME}";
+                    setWorkspaceVariables(${BRANCH_NAME})
 				} catch(Exception e) {
 					println "There has been an error setting workspace variables"
 					throw e
