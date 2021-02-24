@@ -21,10 +21,10 @@ import groovy.json.JsonSlurper
 
                     def MULESOFT_USER = ''
                     def MULESOFT_PASSWORD = ''
-                    def slurper = new JsonSlurper()
+                   
 
                     env.BRANCH_NAME='develop';
-                    
+
                     echo "BRANCH = ${env.BRANCH_NAME}"
                     setWorkspaceVariables(env.BRANCH_NAME)
 				} catch(Exception e) {
@@ -97,7 +97,8 @@ def setWorkspaceVariables(branch) {
 }
 
 def retrieveMulesoftVariables() {
-
+    
+    slurper = new JsonSlurper()
     //println "retrieve mulesoft variables"
     url = "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\'"
     env.ACCESS_TOKEN = slurper.parseText(url.execute().text).access_token
