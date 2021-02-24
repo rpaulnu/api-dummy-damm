@@ -18,13 +18,12 @@ def MULESOFT_PASSWORD = ''
 
 
 	stage ("Set configuration variables") {
+
 		//container('mule-builder') {
 			script {
 				try {
 
-                environment {
-                        BRANCH_NAME = 'develop'
-                    }
+                    env.BRANCH_NAME='develop';
                     echo "BRANCH = ${env.BRANCH_NAME}"
                     setWorkspaceVariables(env.BRANCH_NAME)
 				} catch(Exception e) {
