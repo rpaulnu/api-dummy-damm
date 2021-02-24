@@ -97,6 +97,8 @@ def setWorkspaceVariables(branch) {
 
 def retrieveMulesoftVariables() {
 
+    println "retrieve mulesoft variables"
+
     env.ACCESS_TOKEN = sh (
         script: """set +x;curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\' | jq --raw-output .access_token""",
         returnStdout: true
