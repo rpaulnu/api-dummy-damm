@@ -15,15 +15,16 @@ def ANYPOINT_PLATFORM_URL=''
 def MULESOFT_USER = ''
 def MULESOFT_PASSWORD = ''
 
-environment {
-        BRANCH_NAME = 'develop'
-    }
 
 
 	stage ("Set configuration variables") {
 		//container('mule-builder') {
 			script {
 				try {
+
+                environment {
+                        BRANCH_NAME = 'develop'
+                    }
                     echo "BRANCH = ${env.BRANCH_NAME}"
                     setWorkspaceVariables(env.BRANCH_NAME)
 				} catch(Exception e) {
