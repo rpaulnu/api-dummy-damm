@@ -101,35 +101,23 @@ def retrieveMulesoftVariables() {
     slurper = new JsonSlurper()
     //println "retrieve mulesoft variables"
     url = "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}"
-    println url;
-    println url.execute().text
     env.ACCESS_TOKEN = slurper.parseText(url.execute().text).access_token
         //script: "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\' | jq --raw-output .access_token"
     //).trim()
 
-    println "${env.ACCESS_TOKEN}"
-    BUSINESS_GROUP_NAME = sh (
-        script: """set +x;curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq .user.contributorOfOrganizations[].name""",
-        returnStdout: true
-    ).trim()
+    url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
+    response = slurper.parseText(url.execute().text)
 
-    ANYPOINT_PLATFORM_CLIENT_ID = sh (
-        script: """set +x; curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq .user.contributorOfOrganizations[].clientId""",
-        returnStdout: true
-    ).trim()
+    BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[].name
+    echo BUSINESS_GROUP_NAME
+    ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[].clientId
+    echo BUSINESS_GROUP_NAME
+    BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[].id
+    echo BUSINESS_GROUP ID
 
-    env.BUSINESS_GROUP_ID = sh (
-        script: """set +x; curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq .user.contributorOfOrganizations[].id""",
-        returnStdout: true
-    ).trim()
+        url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/organizations/${BUSINESS_GROUP_ID}/environments -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq \".data[] | select(.name==\\"${ENVIRONMENT}\\").id\""
 
-    ENVIRONMENT_ID = sh (
-        script: """set +x; curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/organizations/${BUSINESS_GROUP_ID}/environments -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq \".data[] | select(.name==\\"${ENVIRONMENT}\\").id\"""",
-        returnStdout: true
-    ).trim()
-    
-    echo ENVIRONMENT_ID
-
+        //ENVIRONMENT_ID = slurper.parseText(url.execute().text).data[].name==\\"${ENVIRONMENT}\\").id
 }
 
 def runMulesoftPipeline(apiName) {
