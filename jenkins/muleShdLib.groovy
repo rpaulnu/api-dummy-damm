@@ -1,31 +1,30 @@
 import groovy.json.JsonSlurper
-def MULE_ENV = ''
-def KEY = ''
-def API_ID = ''
-def BUSINESS_GROUP_NAME = ''
-def ENVIRONMENT = ''
-def WORKERS = ''
-def WORKER_TYPE = ''
-def REGION = ''
-def APPLICATION_SUFFIX = ''
-
-def ACCESS_TOKEN = ''
-
-def ANYPOINT_PLATFORM_URL=''
-
-def MULESOFT_USER = ''
-def MULESOFT_PASSWORD = ''
-def slurper = new JsonSlurper()
-
-
 
 	stage ("Set configuration variables") {
 
 		//container('mule-builder') {
 			script {
 				try {
+                    def MULE_ENV = ''
+                    def KEY = ''
+                    def API_ID = ''
+                    def BUSINESS_GROUP_NAME = ''
+                    def ENVIRONMENT = ''
+                    def WORKERS = ''
+                    def WORKER_TYPE = ''
+                    def REGION = ''
+                    def APPLICATION_SUFFIX = ''
+
+                    def ACCESS_TOKEN = ''
+
+                    def ANYPOINT_PLATFORM_URL=''
+
+                    def MULESOFT_USER = ''
+                    def MULESOFT_PASSWORD = ''
+                    def slurper = new JsonSlurper()
 
                     env.BRANCH_NAME='develop';
+                    
                     echo "BRANCH = ${env.BRANCH_NAME}"
                     setWorkspaceVariables(env.BRANCH_NAME)
 				} catch(Exception e) {
