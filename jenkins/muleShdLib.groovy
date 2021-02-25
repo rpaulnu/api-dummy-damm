@@ -104,13 +104,15 @@ def retrieveMulesoftVariables() {
 
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
-    println response
+
     BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[0].name
     echo BUSINESS_GROUP_NAME
-    /*ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[].clientId
-    echo BUSINESS_GROUP_NAME
-    BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[].id
-    echo BUSINESS_GROUP ID*/
+
+    ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[0].clientId
+    echo ANYPOINT_PLATFORM_CLIENT_ID
+    
+    BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[0].id
+    echo BUSINESS_GROUP ID
 
         //url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/organizations/${BUSINESS_GROUP_ID}/environments -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq \".data[] | select(.name==\\"${ENVIRONMENT}\\").id\""
 
