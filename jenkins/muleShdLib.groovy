@@ -192,8 +192,8 @@ def uploadAssetToExchange(apiName) {
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests \
                 -Denvironment=${ENVIRONMENT} \
                 -Dmule.applicationName=api-dummy-damm \
-                -Danypoint.username=${ANYPOINT_PLATFORM_USERNAME} \
-                -Danypoint.password=${ANYPOINT_PLATFORM_PASSWORD} \
+                -Danypoint.username=${MULESOFT_USER} \
+                -Danypoint.password=${MULESOFT_PASSWORD} \
                 -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
                 -Danypoint.platform.client_secret=\${ANYPOINT_PLATFORM_CLIENT_SECRET} \
                 -Dmule.env=${MULE_ENV} \
@@ -210,8 +210,8 @@ def deploy(apiName) {
                 -Denvironment=${ENVIRONMENT} \
                 -Dmule.region=${REGION} \
                 -Dmule.applicationName=api-dummy-damm \
-                -Danypoint.username=\${MULESOFT_USER} \
-                -Danypoint.password=\${MULESOFT_PASSWORD} \
+                -Danypoint.username=${MULESOFT_USER} \
+                -Danypoint.password=${MULESOFT_PASSWORD} \
                 -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
                 -Danypoint.platform.client_secret=\${ANYPOINT_PLATFORM_CLIENT_SECRET} \
                 -Dmule.env=${MULE_ENV} \
