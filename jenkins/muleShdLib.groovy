@@ -14,11 +14,8 @@ import groovy.json.JsonSlurper
                     def WORKER_TYPE = ''
                     def REGION = ''
                     def APPLICATION_SUFFIX = ''
-
                     def ACCESS_TOKEN = ''
-
                     def ANYPOINT_PLATFORM_URL=''
-
                     def MULESOFT_USER = ''
                     def MULESOFT_PASSWORD = ''
                    
@@ -107,13 +104,13 @@ def retrieveMulesoftVariables() {
 
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
-
+    echo response
     BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[].name
     echo BUSINESS_GROUP_NAME
-    ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[].clientId
+    /*ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[].clientId
     echo BUSINESS_GROUP_NAME
     BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[].id
-    echo BUSINESS_GROUP ID
+    echo BUSINESS_GROUP ID*/
 
         //url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/organizations/${BUSINESS_GROUP_ID}/environments -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq \".data[] | select(.name==\\"${ENVIRONMENT}\\").id\""
 
@@ -158,7 +155,7 @@ def runMulesoftPipeline(apiName) {
 		//container('mule-builder') {
 			script {
 				try {
-					//uploadAssetToExchange(apiName);
+					uploadAssetToExchange(apiName);
                     deploy(apiName)
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
