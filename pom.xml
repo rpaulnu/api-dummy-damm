@@ -3,18 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>0994ed66-9d28-4904-8231-74516966ecdd</groupId>
-    <artifactId>api-dummy-damm</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <artifactId>app-api-dummy-damm</artifactId>
+    <version>1.0.2</version>
     <packaging>mule-application</packaging>
 
-    <name>api-dummy-damm</name>
+    <name>app-api-dummy-damm</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <app.runtime>4.3.0-20201013</app.runtime>
-        <mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
+        <mule.maven.plugin.version>3.3.6</mule.maven.plugin.version>
          <exchange.url>https://maven.eu1.anypoint.mulesoft.com/api/v1/organizations/0994ed66-9d28-4904-8231-74516966ecdd/maven</exchange.url>
     </properties>
 
@@ -31,6 +31,7 @@
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
+                    <classifier>mule-application</classifier>
                 </configuration>
             </plugin>
         </plugins>
@@ -96,5 +97,4 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-
 </project>
