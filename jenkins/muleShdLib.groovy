@@ -113,7 +113,7 @@ def retrieveMulesoftVariables() {
     echo ANYPOINT_PLATFORM_CLIENT_ID
 
     BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[0].id
-    echo BUSINESS_GROUP ID
+    echo BUSINESS_GROUP_ID
 
         //url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/organizations/${BUSINESS_GROUP_ID}/environments -H \"Authorization:Bearer ${ACCESS_TOKEN}\" | jq \".data[] | select(.name==\\"${ENVIRONMENT}\\").id\""
 
