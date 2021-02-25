@@ -98,7 +98,7 @@ def retrieveMulesoftVariables() {
    
     response = "curl -H 'Content-Type: application/x-www-form-urlencoded' -X POST -d username=${MULESOFT_USER} -d password=${MULESOFT_PASSWORD} https://${ANYPOINT_PLATFORM_URL}/accounts/login".execute().text
 
-    //slurper = new JsonSlurper()
+    def slurper = new JsonSlurper()
     echo response
 
     //def ACCESS_TOKEN = slurper.parseText(response).access_token
