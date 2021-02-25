@@ -213,7 +213,7 @@ def deploy(apiName) {
                 -Danypoint.username=${MULESOFT_USER} \
                 -Danypoint.password=${MULESOFT_PASSWORD} \
                 -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
-                -Danypoint.platform.client_secret=\${ANYPOINT_PLATFORM_CLIENT_SECRET} \
+                -Danypoint.platform.client_secret=47b84B097A94471799266da97209895A \
                 -Dmule.env=${MULE_ENV} \
                 -Dmule.businessGroup=${BUSINESS_GROUP_NAME} \
                 -Dmule.workerType=${WORKER_TYPE} \
