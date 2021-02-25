@@ -180,7 +180,7 @@ def runMulesoftPipeline(apiName) {
 def build() {
 
       //sh "mvn clean test"
-      bat "mvn clean test"
+      bat "C:/opt/apache-maven-3.6.3/bin/mvn clean test"
     
     
 }
