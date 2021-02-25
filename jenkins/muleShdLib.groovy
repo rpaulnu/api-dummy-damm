@@ -112,7 +112,6 @@ def retrieveMulesoftVariables() {
     
     response = slurper.parseText(url.execute().text)
 
-    print response
 
     for(i=0;i < response.data.size();i++){
     
@@ -125,6 +124,8 @@ def retrieveMulesoftVariables() {
     }
     
 }
+
+println ENVIRONMENT_ID
 
 }
 
