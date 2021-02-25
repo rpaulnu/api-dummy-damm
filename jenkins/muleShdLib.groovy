@@ -180,7 +180,7 @@ def runMulesoftPipeline(apiName) {
 def build() {
 
       //sh "mvn clean test"
-      call mvn clean test
+      bat "mvn clean test"
     
     
 }
