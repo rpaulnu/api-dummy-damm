@@ -101,8 +101,8 @@ def retrieveMulesoftVariables() {
     def slurper = new JsonSlurper()
     echo response
 
-    //def ACCESS_TOKEN = slurper.parseText(response).access_token
-    //echo ACCESS_TOKEN
+    def ACCESS_TOKEN = slurper.parseText(response).access_token
+    echo ACCESS_TOKEN
     /*url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
 
