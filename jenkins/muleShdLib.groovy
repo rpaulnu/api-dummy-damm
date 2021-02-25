@@ -94,14 +94,13 @@ def setWorkspaceVariables(branch) {
     retrieveMulesoftVariables()
 }
 
-@NonCPS
 def retrieveMulesoftVariables() {
 
     slurper = new JsonSlurper()
     url = "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}"
     ACCESS_TOKEN = slurper.parseText(url.execute().text).access_token
 
-    url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
+    /*url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
 
     BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[0].name
@@ -125,7 +124,7 @@ def retrieveMulesoftVariables() {
         
     }
     
-}
+}*/
 
 
 }
