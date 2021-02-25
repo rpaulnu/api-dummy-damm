@@ -178,9 +178,9 @@ def runMulesoftPipeline(apiName) {
 }
 
 def build() {
-withMaven {
+
       sh "mvn clean test"
-    }
+    
     
 }
 
