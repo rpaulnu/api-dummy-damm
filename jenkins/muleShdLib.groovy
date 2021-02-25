@@ -115,7 +115,20 @@ def retrieveMulesoftVariables() {
     response = slurper.parseText(url.execute().text)
 
     print response
-        //ENVIRONMENT_ID = slurper.parseText(url.execute().text).data[].name==\\"${ENVIRONMENT}\\").id
+
+    for(i=0;i < response.data.size();i++){
+    
+    if(response.data[i].name.equals(ENVIRONMENT)){
+        
+        ENVIRONMENT_ID = response.data[i].id
+        
+        break;
+        
+    }
+    
+}
+
+        println ENVIRONMENT_ID
 }
 
 def runMulesoftPipeline(apiName) {
