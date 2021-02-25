@@ -179,7 +179,8 @@ def runMulesoftPipeline(apiName) {
 
 def build() {
 
-      sh "mvn clean test"
+      //sh "mvn clean test"
+      call mvn clean test
     
     
 }
