@@ -48,8 +48,8 @@ node {
 
 			script {
 				try {
-					//uploadAssetToExchange(apiName);
-                    deploy(apiName)
+					uploadAssetToExchange("");
+                    deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -180,20 +180,20 @@ def runMulesoftPipeline(apiName) {
 def build() {
 
       //sh "mvn clean test"
-      bat "git clone -b develop https://github.com/rpaulnu/test-damm.git"
-      bat "cd test-damm & C:/opt/apache-maven-3.6.3/bin/mvn clean test"
+      bat "git clone -b develop https://github.com/rpaulnu/api-dummy-damm.git"
+      bat "cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn clean test"
     
     
 }
 
 def uploadAssetToExchange(apiName) {
 
-    sh """
-        mvn -B deploy -DskipTests \
+    bat """
+        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests \
                 -Denvironment=${ENVIRONMENT} \
-                -Dmule.applicationName=${apiName} \
-                -Danypoint.username=\${ANYPOINT_PLATFORM_USERNAME} \
-                -Danypoint.password=\${ANYPOINT_PLATFORM_PASSWORD} \
+                -Dmule.applicationName=api-dummy-damm \
+                -Danypoint.username=${ANYPOINT_PLATFORM_USERNAME} \
+                -Danypoint.password=${ANYPOINT_PLATFORM_PASSWORD} \
                 -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
                 -Danypoint.platform.client_secret=\${ANYPOINT_PLATFORM_CLIENT_SECRET} \
                 -Dmule.env=${MULE_ENV} \
@@ -205,11 +205,11 @@ def uploadAssetToExchange(apiName) {
 
 def deploy(apiName) {
 
-    sh """
-        mvn -B deploy -DskipTests -DmuleDeploy \
+    bat """
+        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests -DmuleDeploy \
                 -Denvironment=${ENVIRONMENT} \
                 -Dmule.region=${REGION} \
-                -Dmule.applicationName=${apiName} \
+                -Dmule.applicationName=api-dummy-damm \
                 -Danypoint.username=\${MULESOFT_USER} \
                 -Danypoint.password=\${MULESOFT_PASSWORD} \
                 -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
