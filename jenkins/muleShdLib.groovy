@@ -1,5 +1,4 @@
-import groovy.json.JsonSlurperClassic
-
+import groovy.json.JsonSlurper
 	stage ("Set configuration variables") {
 
 		//container('mule-builder') {
@@ -97,7 +96,10 @@ def setWorkspaceVariables(branch) {
 def retrieveMulesoftVariables() {
 
     slurper = new JsonSlurperClassic()
-    response = "curl -H 'Content-Type: application/x-www-form-urlencoded' -X POST -d username=${MULESOFT_USER} -d password=${MULESOFT_PASSWORD} https://${ANYPOINT_PLATFORM_URL}/accounts/login".execute()
+    response = "curl -H 'Content-Type: application/x-www-form-urlencoded' -X POST -d username=${MULESOFT_USER} -d password=${MULESOFT_PASSWORD} https://${ANYPOINT_PLATFORM_URL}/accounts/login".execute().text
+
+    println response.getClass()
+
     ACCESS_TOKEN = slurper.parseText(response).access_token
     echo ACCESS_TOKEN
     /*url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
