@@ -38,6 +38,7 @@ import groovy.json.JsonSlurper
 		//container('mule-builder') {
 			script {
 				try {
+                    echo "build"
                     build()
 				} catch(Exception e) {
 					println "There has been an error during testing stage"
@@ -97,11 +98,8 @@ def setWorkspaceVariables(branch) {
 def retrieveMulesoftVariables() {
 
     slurper = new JsonSlurper()
-    //println "retrieve mulesoft variables"
     url = "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}"
     ACCESS_TOKEN = slurper.parseText(url.execute().text).access_token
-        //script: "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\' | jq --raw-output .access_token"
-    //).trim()
 
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
@@ -128,7 +126,6 @@ def retrieveMulesoftVariables() {
     
 }
 
-        println ENVIRONMENT_ID
 }
 
 def runMulesoftPipeline(apiName) {
