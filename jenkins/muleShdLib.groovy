@@ -48,7 +48,7 @@ node {
 
 			script {
 				try {
-					uploadAssetToExchange("");
+			
                     deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
