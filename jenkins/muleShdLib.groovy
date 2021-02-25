@@ -95,7 +95,7 @@ def setWorkspaceVariables(branch) {
 def retrieveMulesoftVariables() {
 
     slurper = new JsonSlurper()
-    response = "curl -H 'Content-Type: application/x-www-form-urlencoded' -X POST -d username=${MULESOFT_USER} -d password=${MULESOFT_PASSWORD} https://${ANYPOINT_PLATFORM_URL}/accounts/login".execute().text
+    response = "curl -H 'Content-Type: application/x-www-form-urlencoded' -X POST -d username=${MULESOFT_USER} -d password=${MULESOFT_PASSWORD} https://${ANYPOINT_PLATFORM_URL}/accounts/login".execute().toString()
 
 
     def ACCESS_TOKEN = slurper.parseText(response).access_token
