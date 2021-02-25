@@ -106,7 +106,7 @@ def retrieveMulesoftVariables() {
     response = slurper.parseText(url.execute().text)
     println response
     BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[0].name
-    //echo BUSINESS_GROUP_NAME
+    echo BUSINESS_GROUP_NAME
     /*ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[].clientId
     echo BUSINESS_GROUP_NAME
     BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[].id
