@@ -4,7 +4,7 @@
 
     <groupId>0994ed66-9d28-4904-8231-74516966ecdd</groupId>
     <artifactId>app-api-dummy-damm</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <packaging>mule-application</packaging>
 
     <name>app-api-dummy-damm</name>
@@ -82,7 +82,7 @@
         <repository>
             <id>mulesoft-releases</id>
             <name>MuleSoft Releases Repository</name>
-            <url>https://repository.mulesoft.org/releases/</url>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
             <layout>default</layout>
         </repository>
     </repositories>
@@ -91,7 +91,7 @@
             <id>mulesoft-releases</id>
             <name>mulesoft release repository</name>
             <layout>default</layout>
-            <url>https://repository.mulesoft.org/releases/</url>
+            <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
