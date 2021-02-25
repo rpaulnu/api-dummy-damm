@@ -4,7 +4,7 @@
 
     <groupId>0994ed66-9d28-4904-8231-74516966ecdd</groupId>
     <artifactId>app-api-dummy-damm</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <packaging>mule-application</packaging>
 
     <name>app-api-dummy-damm</name>
