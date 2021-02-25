@@ -100,7 +100,6 @@ def retrieveMulesoftVariables() {
     response = "curl -H 'Content-Type: application/x-www-form-urlencoded' -X POST -d username=${MULESOFT_USER} -d password=${MULESOFT_PASSWORD} https://${ANYPOINT_PLATFORM_URL}/accounts/login".execute().text
 
     def slurper = new JsonSlurper()
-    echo response
 
     ACCESS_TOKEN = slurper.parseText(response).access_token
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
@@ -138,7 +137,7 @@ def runMulesoftPipeline(apiName) {
 
 
 	stage ("Set configuration variables") {
-		//container('mule-builder') {
+		container('mule-builder') {
 			script {
 				try {
                     setWorkspaceVariables(env.BRANCH_NAME)
@@ -147,12 +146,12 @@ def runMulesoftPipeline(apiName) {
 					throw e
 				}
 			}
-		//}
+		}
 	}
 
 
 	stage ("Build & test project") {
-		//container('mule-builder') {
+		container('mule-builder') {
 			script {
 				try {
                     build()
@@ -161,12 +160,12 @@ def runMulesoftPipeline(apiName) {
 					throw e
 				}
 			}
-		//}
+		}
     }
 
 
     stage ("Deploy to Anypoint Platform") {
-		//container('mule-builder') {
+		container('mule-builder') {
 			script {
 				try {
 					uploadAssetToExchange(apiName);
@@ -176,16 +175,16 @@ def runMulesoftPipeline(apiName) {
 					throw e
 				}
 			}
-		//}
+		}
 	}
 
 }
 
 def build() {
-
-    sh """
-        mvn clean test
-    """
+withMaven {
+      sh "mvn clean test"
+    }
+    
 }
 
 def uploadAssetToExchange(apiName) {
