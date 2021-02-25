@@ -9,6 +9,7 @@ import groovy.json.JsonSlurper
                     def KEY = ''
                     def API_ID = ''
                     def BUSINESS_GROUP_NAME = ''
+                    def BUSINESS_GROUP_ID = ''
                     def ENVIRONMENT = ''
                     def WORKERS = ''
                     def WORKER_TYPE = ''
