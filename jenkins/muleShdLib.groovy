@@ -23,7 +23,6 @@ import groovy.json.JsonSlurper
 
                     env.BRANCH_NAME='develop';
 
-                    echo "BRANCH = ${env.BRANCH_NAME}"
                     setWorkspaceVariables(env.BRANCH_NAME)
 				} catch(Exception e) {
 					println "There has been an error setting workspace variables"
@@ -95,6 +94,7 @@ def setWorkspaceVariables(branch) {
     retrieveMulesoftVariables()
 }
 
+@NonCPS
 def retrieveMulesoftVariables() {
 
     slurper = new JsonSlurper()
@@ -108,6 +108,8 @@ def retrieveMulesoftVariables() {
     ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[0].clientId
     BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[0].id
 
+    response = null
+
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/organizations/${BUSINESS_GROUP_ID}/environments -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     
     response = slurper.parseText(url.execute().text)
@@ -118,14 +120,13 @@ def retrieveMulesoftVariables() {
     if(response.data[i].name.equals(ENVIRONMENT)){
         
         ENVIRONMENT_ID = response.data[i].id
-        
+        response = null;   
         break;
         
     }
     
 }
 
-println ENVIRONMENT_ID
 
 }
 
