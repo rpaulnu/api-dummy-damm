@@ -14,7 +14,6 @@ import groovy.json.JsonSlurper
                     def WORKER_TYPE = ''
                     def REGION = ''
                     def APPLICATION_SUFFIX = ''
-                    def ACCESS_TOKEN = ''
                     def ANYPOINT_PLATFORM_URL=''
                     def MULESOFT_USER = ''
                     def MULESOFT_PASSWORD = ''
@@ -98,9 +97,8 @@ def retrieveMulesoftVariables() {
     slurper = new JsonSlurper()
     response = "curl -H 'Content-Type: application/x-www-form-urlencoded' -X POST -d username=${MULESOFT_USER} -d password=${MULESOFT_PASSWORD} https://${ANYPOINT_PLATFORM_URL}/accounts/login".execute().text
 
-    println response.getClass()
 
-    ACCESS_TOKEN = slurper.parseText(response).access_token
+    def ACCESS_TOKEN = slurper.parseText(response).access_token
     echo ACCESS_TOKEN
     /*url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
