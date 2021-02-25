@@ -105,7 +105,7 @@ def retrieveMulesoftVariables() {
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
     println response
-    //BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[].name
+    BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[0].name
     //echo BUSINESS_GROUP_NAME
     /*ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[].clientId
     echo BUSINESS_GROUP_NAME
