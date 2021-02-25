@@ -206,10 +206,10 @@ def uploadAssetToExchange(apiName) {
 def deploy(apiName) {
 
     bat """
-        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests -DmuleDeploy \
+        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
                 -Denvironment=${ENVIRONMENT} \
                 -Dmule.region=${REGION} \
-                -Dmule.applicationName=api-dummy-damm \
+                -Dmule.applicationName=app-api-dummy-damm \
                 -Danypoint.username=${MULESOFT_USER} \
                 -Danypoint.password=${MULESOFT_PASSWORD} \
                 -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
