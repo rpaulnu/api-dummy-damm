@@ -2,7 +2,7 @@ import groovy.json.JsonSlurper
 
 	stage ("Set configuration variables") {
 
-		//container('mule-builder') {
+		container('mule-builder') {
 			script {
 				try {
                     def MULE_ENV = ''
@@ -29,12 +29,12 @@ import groovy.json.JsonSlurper
 					throw e
 				}
 			}
-		//}
+		}
 	}
 
 
 	stage ("Build & test project") {
-		//container('mule-builder') {
+		container('mule-builder') {
 			script {
 				try {
                     echo "build"
@@ -44,12 +44,12 @@ import groovy.json.JsonSlurper
 					throw e
 				}
 			}
-		//}
+		}
     }
 
 
     stage ("Deploy to Anypoint Platform") {
-		//container('mule-builder') {
+		container('mule-builder') {
 			script {
 				try {
 					//uploadAssetToExchange(apiName);
@@ -59,10 +59,10 @@ import groovy.json.JsonSlurper
 					throw e
 				}
 			}
-		//}
+		}
 	}
 
-
+/***************FUNCTIONS**************/
 
 def setWorkspaceVariables(branch) {
 
