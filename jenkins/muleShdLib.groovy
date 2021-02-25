@@ -8,6 +8,7 @@ import groovy.json.JsonSlurper
                     def MULE_ENV = ''
                     def KEY = ''
                     def API_ID = ''
+                    def ACCESS_TOKEN = ''
                     def BUSINESS_GROUP_NAME = ''
                     def BUSINESS_GROUP_ID = ''
                     def ENVIRONMENT = ''
@@ -101,16 +102,14 @@ def retrieveMulesoftVariables() {
     def slurper = new JsonSlurper()
     echo response
 
-    def ACCESS_TOKEN = slurper.parseText(response).access_token
-    echo ACCESS_TOKEN
-    /*url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
+    ACCESS_TOKEN = slurper.parseText(response).access_token
+    url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
 
     BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[0].name
     ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[0].clientId
     BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[0].id
 
-    response = null
 
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/organizations/${BUSINESS_GROUP_ID}/environments -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     
@@ -127,7 +126,7 @@ def retrieveMulesoftVariables() {
         
     }
     
-}*/
+}
 
 
 }
