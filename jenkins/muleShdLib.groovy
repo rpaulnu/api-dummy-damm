@@ -48,8 +48,8 @@ node {
 
 			script {
 				try {
-			
-                    deploy("")
+				uploadAsset("")
+                    		deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -90,7 +90,7 @@ def setWorkspaceVariables(branch) {
     
     retrieveMulesoftVariables()
 }
-@NonCPS
+
 def retrieveMulesoftVariables() {
 
    
@@ -186,7 +186,7 @@ def build() {
     
 }
 
-def uploadAssetToExchange(apiName) {
+def uploadAsset(apiName) {
 
     bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests \
