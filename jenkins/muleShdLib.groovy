@@ -91,7 +91,7 @@ def setWorkspaceVariables(branch) {
     
     retrieveMulesoftVariables()
 }
-
+@NonCPS
 def retrieveMulesoftVariables() {
 
    
