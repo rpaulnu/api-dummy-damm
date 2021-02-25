@@ -181,7 +181,7 @@ def build() {
 
       //sh "mvn clean test"
       bat "git clone -b develop https://github.com/rpaulnu/test-damm.git"
-      bat "C:/opt/apache-maven-3.6.3/bin/mvn clean test"
+      bat "cd test-damm | C:/opt/apache-maven-3.6.3/bin/mvn clean test"
     
     
 }
