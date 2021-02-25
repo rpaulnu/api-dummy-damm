@@ -165,8 +165,7 @@ def runMulesoftPipeline(apiName) {
 		container('mule-builder') {
 			script {
 				try {
-					//uploadAssetToExchange(apiName);
-                    deploy(apiName)
+                    deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
