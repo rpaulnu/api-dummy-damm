@@ -98,15 +98,15 @@ def retrieveMulesoftVariables() {
     slurper = new JsonSlurper()
     //println "retrieve mulesoft variables"
     url = "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}"
-    env.ACCESS_TOKEN = slurper.parseText(url.execute().text).access_token
+    ACCESS_TOKEN = slurper.parseText(url.execute().text).access_token
         //script: "curl -s -L https://${ANYPOINT_PLATFORM_URL}/accounts/login -X POST -d \'username=${MULESOFT_USER}&password=${MULESOFT_PASSWORD}\' | jq --raw-output .access_token"
     //).trim()
 
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
-    echo response
-    BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[].name
-    echo BUSINESS_GROUP_NAME
+    println response
+    //BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[].name
+    //echo BUSINESS_GROUP_NAME
     /*ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[].clientId
     echo BUSINESS_GROUP_NAME
     BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[].id
