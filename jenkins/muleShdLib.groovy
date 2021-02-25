@@ -1,5 +1,5 @@
 import groovy.json.JsonSlurper
-
+node {
 	stage ("Set configuration variables") {
 
 			script {
@@ -56,6 +56,8 @@ import groovy.json.JsonSlurper
 				}
 			}
 	}
+}
+
 
 /***************FUNCTIONS**************/
 
