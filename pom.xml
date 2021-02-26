@@ -31,7 +31,17 @@
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <classifier>mule-application</classifier>
+                 <cloudHubDeployment>
+                  <uri>https://eu1.anypoint.mulesoft.com</uri>
+                  <muleVersion>${app.runtime}</muleVersion>
+                  <username>josegardu_damm</username>
+                  <password>Cervantes12everis</password>
+                  <applicationName>app-api-dummy-damm</applicationName>
+                  <environment>DEV</environment>
+                  <!--<region>${region}</region>
+                  <workers>${workers}</workers>
+                  <workerType>${workerType}</workerType>-->
+                 </cloudHubDeployment>
                 </configuration>
             </plugin>
         </plugins>
