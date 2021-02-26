@@ -218,7 +218,7 @@ body='{"spec": {\
   "instanceLabel": "API de prueba",\
 }';
 
-url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H Content-Type: application/json https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/${MULE_ENV}/apis -d ${body}".execute().text
+url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H \"Content-Type: application/json\" https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/${MULE_ENV}/apis -d ${body}".execute().text
 print url
 
 
