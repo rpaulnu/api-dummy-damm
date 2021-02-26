@@ -166,7 +166,7 @@ def runMulesoftPipeline(apiName) {
 			script {
 				try {
 		      		   uploadAsset("")
-                      deploy("")
+                      //deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -186,22 +186,7 @@ def build() {
     
 }
 
-def uploadAsset(apiName) {
 
-    bat """
-        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests \
-                -Denvironment=${ENVIRONMENT} \
-                -Dmule.applicationName=app-api-dummy-damm \
-                -Danypoint.username=${MULESOFT_USER} \
-                -Danypoint.password=${MULESOFT_PASSWORD} \
-                -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
-                -Danypoint.platform.client_secret=47b84B097A94471799266da97209895A \
-                -Dmule.env=${MULE_ENV} \
-                -Dmule.businessGroup=${BUSINESS_GROUP_NAME} \
-                -DapplicationSuffix=${APPLICATION_SUFFIX} \
-                -Dmule.businessGroupId=${BUSINESS_GROUP_ID}
-    """
-}
 
 def deploy(apiName) {
 
@@ -217,6 +202,26 @@ def deploy(apiName) {
 		-DworkerType=${WORKER_TYPE} \
                 -DobjectStoreV2=true \
     """
+}
+def uploadAssetToExchange(apiName) {
+
+body='{"spec": {\
+    "groupId": "0994ed66-9d28-4904-8231-74516966ecdd",\
+    "assetId": "api-dummy-damm",\
+    "version": "1.0.0"\
+  },\
+  "endpoint": {\
+    "uri": "https://some.implementation.com",\
+    "proxyUri": "http://0.0.0.0:8081/",\
+    "isCloudHub": "true"\
+  },\
+  "instanceLabel": "API de prueba",\
+}';
+
+url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H Content-Type: application/json https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/${MULE_ENV}/apis -d ${body}".execute().text
+print url
+
+
 }
 
 
