@@ -188,8 +188,9 @@ def build() {
 
 
 def deploy(apiName) {
-
-    bat """
+	
+	uploadAsset("")
+    /*bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
                 -Denvironment=${ENVIRONMENT} \
                 -DapplicationName=app3-api-dummy-damm \
@@ -200,7 +201,7 @@ def deploy(apiName) {
                 -Dworkers=1 \
 		-DworkerType=${WORKER_TYPE} \
                 -DobjectStoreV2=true \
-    """
+    """*/
 }
 def uploadAsset(apiName) {
 
