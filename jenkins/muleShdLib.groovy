@@ -48,7 +48,7 @@ node {
 
 			script {
 				try {
-				uploadAsset("")
+				//uploadAsset("")
                     		deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
@@ -208,10 +208,14 @@ def deploy(apiName) {
     bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
                 -Denvironment=${ENVIRONMENT} \
-                -DapplicationName=app-api-dummy-damm \
+                -DapplicationName=app3-api-dummy-damm \
 		-DmuleVersion=4.3.0
-                -Danypoint.username=${MULESOFT_USER} \
-                -Danypoint.password=${MULESOFT_PASSWORD} \
+                -Dusername=${MULESOFT_USER} \
+                -Dpassword=${MULESOFT_PASSWORD} \
+		-Dregion=${REGION} \
+                -Dworkers=1 \
+		-DworkerType=${WORKER_TYPE} \
+                -DobjectStoreV2=true \
     """
 }
 
