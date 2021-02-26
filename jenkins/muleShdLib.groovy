@@ -218,7 +218,7 @@ body="{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetI
      \"isCloudHub\": \"true\"  }, 
      \"instanceLabel\": \"API de prueba\"}'''*/
 
-url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H \"Content-Type: application/json\" https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/cb3bd733-441f-4e5c-82be-bb0038c5f668/apis -d \"${body}\""
+url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H \"Content-Type: application/json\" https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/cb3bd733-441f-4e5c-82be-bb0038c5f668/apis -d \'${body}\'"
 print url
 response = url.execute().text
 println response
