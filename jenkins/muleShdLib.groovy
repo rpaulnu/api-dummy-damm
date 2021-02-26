@@ -205,16 +205,21 @@ def deploy(apiName) {
 }
 def uploadAsset(apiName) {
 
-body='{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\
-    "assetId\": \"api-dummy-damm\",\
-    "version\": \"1.0.0\"\
-  },\
-  "endpoint\": {\"uri\": \"https://some.implementation.com\",
-    \"proxyUri\": \"http://0.0.0.0:8081/\",\
-    \"isCloudHub\": \"true\"\
-  },\
-  "instanceLabel": "API de prueba",\
-}';
+body='{\"spec\": 
+	{\\\r\n    
+	 \"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",
+	 \\\r\n    \
+	 "assetId\": \"api-dummy-damm\",
+	 \\\r\n    
+	 \"version\": \"1.0.0\"\\\r\n  },
+	 \\\r\n  
+	 \"endpoint\": {\\\r\n    
+	 \"uri\": \"https:\/\/some.implementation.com\",\\\r\n    
+	 \"proxyUri\": \"http:\/\/0.0.0.0:8081\/\",
+	 \\\r\n    
+	 \"isCloudHub\": \"true\"\\\r\n  },
+	 \\\r\n  
+	 \"instanceLabel\": \"API de prueba\",\\\r\n}'
 
 url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H \"Content-Type: application/json\" https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/${MULE_ENV}/apis -d ${body}".execute().text
 print url
