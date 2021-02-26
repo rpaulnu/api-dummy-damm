@@ -166,7 +166,6 @@ def runMulesoftPipeline(apiName) {
 			script {
 				try {
 		      		   uploadAsset("")
-                      //deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -203,7 +202,7 @@ def deploy(apiName) {
                 -DobjectStoreV2=true \
     """
 }
-def uploadAssetToExchange(apiName) {
+def uploadAsset(apiName) {
 
 body='{"spec": {\
     "groupId": "0994ed66-9d28-4904-8231-74516966ecdd",\
