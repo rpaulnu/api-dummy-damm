@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>0994ed66-9d28-4904-8231-74516966ecdd</groupId>
-    <artifactId>app-api-dummy-damm</artifactId>
-    <version>1.0.7</version>
+    <artifactId>app3-api-dummy-damm</artifactId>
+    <version>1.0.8</version>
     <packaging>mule-application</packaging>
 
-    <name>app-api-dummy-damm</name>
+    <name>app3-api-dummy-damm</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,19 +30,6 @@
                 <artifactId>mule-maven-plugin</artifactId>
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
-                <configuration>
-                 <cloudHubDeployment>
-                  <uri>https://eu1.anypoint.mulesoft.com</uri>
-                  <muleVersion>${app.runtime}</muleVersion>
-                  <username>josegardu_damm</username>
-                  <password>Cervantes12everis</password>
-                  <applicationName>app-api-dummy-damm</applicationName>
-                  <environment>DEV</environment>
-                  <!--<region>${region}</region>
-                  <workers>${workers}</workers>
-                  <workerType>${workerType}</workerType>-->
-                 </cloudHubDeployment>
-                </configuration>
             </plugin>
         </plugins>
     </build>
