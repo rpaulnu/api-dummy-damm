@@ -218,7 +218,7 @@ body="{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetI
      \"isCloudHub\": \"true\"  }, 
      \"instanceLabel\": \"API de prueba\"}'''*/
 
-url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H \"Content-Type: application/json\" https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/cb3bd733-441f-4e5c-82be-bb0038c5f668/apis -d ${body}"
+url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H \"Content-Type: application/json\" https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/cb3bd733-441f-4e5c-82be-bb0038c5f668/apis -d {\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}"
 print url
 response = url.execute().text
 println response
