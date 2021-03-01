@@ -210,7 +210,7 @@ conn.doOutput = true
     instanceLabel: "API de prueba"
 ]
 def body = new JsonBuilder(data)
-println jsonBuilder.toString()
+println body.toString()
 /*Build JSON Body*/
 /*def body = jsonBuilder {
            spec {
