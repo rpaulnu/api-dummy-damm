@@ -242,24 +242,18 @@ println(postRC);
 
 def deploy(apiName) {
 
-    uploadAsset("")
 
-    /*bat """
+    bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
-                -Denvironment=${ENVIRONMENT} \
                 -Dmule.region=${REGION} \
-                -Dmule.applicationName=app-api-dummy-damm \
-                -Danypoint.username=${MULESOFT_USER} \
-                -Danypoint.password=${MULESOFT_PASSWORD} \
-                -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
-                -Danypoint.platform.client_secret=47b84B097A94471799266da97209895A \
+                -Dmule.applicationName=app-${apiName} \
+                -Dmule.user=${MULESOFT_USER} \
+                -Dmule.password=${MULESOFT_PASSWORD} \
                 -Dmule.env=${MULE_ENV} \
                 -Dmule.businessGroup=${BUSINESS_GROUP_NAME} \
                 -Dmule.workerType=${WORKER_TYPE} \
                 -Dmule.workers=${WORKERS} \
-                -DapplicationSuffix=${APPLICATION_SUFFIX} \
-                -Dmule.businessGroupId=${BUSINESS_GROUP_ID}
-    """*/
+    """
 }
 
 

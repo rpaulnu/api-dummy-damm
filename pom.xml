@@ -30,6 +30,21 @@
                 <artifactId>mule-maven-plugin</artifactId>
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
+                <configuration>
+                    <!--Se deben pasar como parametros en el comando maven -->
+                 <cloudHubDeployment>
+                  <uri>https://eu1.anypoint.mulesoft.com</uri>
+                  <muleVersion>${app.runtime}</muleVersion>
+                  <username>${mulesoft.user}</username>
+                  <password>${mulesoft.password}</password>
+                  <applicationName>${application.name}</applicationName>                 
+                  <environment>${mule.env}</environment>
+                  <region>${mule.region}</region>
+                  <workers>${mule.workers}</workers>                  
+                  <workerType>${mule.workerType}</workerType>
+                  <objectStoreV2>true</objectStoreV2>
+                 </cloudHubDeployment>
+                </configuration>
             </plugin>
         </plugins>
     </build>
