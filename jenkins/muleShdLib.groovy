@@ -48,8 +48,8 @@ node {
 
 			script {
 				try {
-				//uploadAsset("")
-                    		deploy("")
+			
+                    deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -90,7 +90,7 @@ def setWorkspaceVariables(branch) {
     
     retrieveMulesoftVariables()
 }
-
+@NonCPS
 def retrieveMulesoftVariables() {
 
    
@@ -165,7 +165,8 @@ def runMulesoftPipeline(apiName) {
 		container('mule-builder') {
 			script {
 				try {
-		      		   	uploadAsset("")
+		      		   uploadAssetToExchange("")
+                      deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -185,46 +186,66 @@ def build() {
     
 }
 
+def uploadAssetToExchange(apiName) {
+url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/${MULE_ENV}/apis") 
+// Set the connection verb and headers
+def conn = url.openConnection() 
+conn.setRequestMethod("POST") 
+conn.setRequestProperty("Content-Type", "application/json")
+conn.setRequestProperty("Content-Type", "Authorization:Bearer ${ACCESS_TOKEN}")
+
+// Required to send the request body of our POST 
+conn.doOutput = true 
+// Create our JSON body  
+//Send our request 
+writer = new OutputStreamWriter(conn.outputStream) 
+writer.write(body) 
+writer.flush() 
+writer.close() 
+conn.connect()
+body="{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}"
 
 
-def deploy(apiName) {
-	
-	uploadAsset("")
+println conn.content.text
+
+/*print url
+url.execute().text*/
+
+
+/*https://eu1.anypoint.mulesoft.com/apimanager/api/v1/organizations/{{organizationId}}/environments/{{environmentId}}/apis
     /*bat """
-        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
+        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests \
                 -Denvironment=${ENVIRONMENT} \
-                -DapplicationName=app3-api-dummy-damm \
-		-DmuleVersion=4.3.0
-                -Dusername=${MULESOFT_USER} \
-                -Dpassword=${MULESOFT_PASSWORD} \
-		-Dregion=${REGION} \
-                -Dworkers=1 \
-		-DworkerType=${WORKER_TYPE} \
-                -DobjectStoreV2=true \
+                -Dmule.applicationName=app-api-dummy-damm \
+                -Danypoint.username=${MULESOFT_USER} \
+                -Danypoint.password=${MULESOFT_PASSWORD} \
+                -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
+                -Danypoint.platform.client_secret=47b84B097A94471799266da97209895A \
+                -Dmule.env=${MULE_ENV} \
+                -Dmule.businessGroup=${BUSINESS_GROUP_NAME} \
+                -DapplicationSuffix=${APPLICATION_SUFFIX} \
+                -Dmule.businessGroupId=${BUSINESS_GROUP_ID}
     """*/
 }
-def uploadAsset(apiName) {
 
-body='{"spec": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}'
+def deploy(apiName) {
 
-/*'''
-{\"spec\": {
-     \"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",
-     \"assetId\": \"api-dummy-damm\",   
-     \"version\": \"1.0.0\" },
-     \"endpoint\": {  
-     \"uri\": \"https://some.implementation.com\",  
-     \"proxyUri\": \"http://0.0.0.0:8081/\",   
-     \"isCloudHub\": \"true\"  }, 
-     \"instanceLabel\": \"API de prueba\"}'''*/
-
-url= "curl -X POST -H \"Authorization:Bearer ${ACCESS_TOKEN}\" -H \"Content-Type: application/json\" https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/cb3bd733-441f-4e5c-82be-bb0038c5f668/apis -d \'{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}\'"
-print url
-response = url.execute().text
-println response
-	
-
-
+    bat """
+        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
+                -Denvironment=${ENVIRONMENT} \
+                -Dmule.region=${REGION} \
+                -Dmule.applicationName=app-api-dummy-damm \
+                -Danypoint.username=${MULESOFT_USER} \
+                -Danypoint.password=${MULESOFT_PASSWORD} \
+                -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
+                -Danypoint.platform.client_secret=47b84B097A94471799266da97209895A \
+                -Dmule.env=${MULE_ENV} \
+                -Dmule.businessGroup=${BUSINESS_GROUP_NAME} \
+                -Dmule.workerType=${WORKER_TYPE} \
+                -Dmule.workers=${WORKERS} \
+                -DapplicationSuffix=${APPLICATION_SUFFIX} \
+                -Dmule.businessGroupId=${BUSINESS_GROUP_ID}
+    """
 }
 
 
