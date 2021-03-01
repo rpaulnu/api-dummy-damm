@@ -1,4 +1,5 @@
 import groovy.json.JsonSlurper
+import groovy.json.JsonBuilder
 node {
 	stage ("Set configuration variables") {
 
@@ -195,7 +196,23 @@ conn.setRequestProperty("Authorization", "Bearer ${ACCESS_TOKEN}")
 
 // Required to send the request body of our POST 
 conn.doOutput = true
-body="{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}"
+def jsonBuilder = new JsonBuilder()
+/*Build JSON Body*/
+def body = jsonBuilder {
+           spec {
+		 groupId "0994ed66-9d28-4904-8231-74516966ecdd"
+		 assetId "api-dummy-damm"
+		 version "1.0.0"
+		}
+	endpoint {
+		uri "https://some.implementation.com"
+		proxyUri "http://0.0.0.0:8081/"
+		isCloudHub true
+		}
+	instanceLabel "API de prueba"
+}
+		
+//body="{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}"
 //body='{"spec": {"groupId": "0994ed66-9d28-4904-8231-74516966ecdd","assetId": "api-dummy-damm","version": "1.0.0" },"endpoint": {"uri": "https://some.implementation.com","proxyUri": "http://0.0.0.0:8081/","isCloudHub": true  },"instanceLabel": "API de prueba"}'
 
 println body
