@@ -205,7 +205,8 @@ conn.doOutput = true
     endpoint: [
     	uri: "https://some.implementation.com",
 	proxyUri: "http://0.0.0.0:8081/",
-	isCloudHub: true	
+	isCloudHub: true,
+	muleVersion4OrAbove: true
     ],
     instanceLabel: "API de prueba"
 ]
