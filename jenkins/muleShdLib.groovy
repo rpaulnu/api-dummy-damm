@@ -201,15 +201,18 @@ body='{"spec": {"groupId": "0994ed66-9d28-4904-8231-74516966ecdd","assetId": "ap
 println body
 // Create our JSON body  
 //Send our request 
-def writer = new OutputStreamWriter(conn.outputStream)
-
-writer.write(body) 
+conn.getOutputStream()
+  .write(body.getBytes("UTF-8"));
+def postRC = post.getResponseCode();
+println(postRC);
+    println(post.getInputStream().getText());
+/*writer.write(body) 
 writer.flush() 
 writer.close() 
 conn.connect()
 
 
-println conn.content.text
+println conn.content.text*/
 
 /*print url
 url.execute().text*/
