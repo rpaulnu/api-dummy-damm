@@ -196,9 +196,19 @@ conn.setRequestProperty("Authorization", "Bearer ${ACCESS_TOKEN}")
 
 // Required to send the request body of our POST 
 conn.doOutput = true
-def jsonBuilder = new JsonBuilder()
+	def data = [
+    isOut: false,
+    baleRun: [
+        incData: true,
+        appendCricket: [
+            [min: 10, max: 32, price: '10']
+        ]
+    ]
+]
+def jsonBuilder = new JsonBuilder(data)
+println jsonBuilder.toString()
 /*Build JSON Body*/
-def body = jsonBuilder {
+/*def body = jsonBuilder {
            spec {
 		 groupId "0994ed66-9d28-4904-8231-74516966ecdd"
 		 assetId "api-dummy-damm"
@@ -210,7 +220,8 @@ def body = jsonBuilder {
 		isCloudHub true
 		}
 	instanceLabel "API de prueba"
-}
+}*/
+
 		
 //body="{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}"
 //body='{"spec": {"groupId": "0994ed66-9d28-4904-8231-74516966ecdd","assetId": "api-dummy-damm","version": "1.0.0" },"endpoint": {"uri": "https://some.implementation.com","proxyUri": "http://0.0.0.0:8081/","isCloudHub": true  },"instanceLabel": "API de prueba"}'
