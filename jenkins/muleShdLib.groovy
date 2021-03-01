@@ -165,8 +165,8 @@ def runMulesoftPipeline(apiName) {
 		container('mule-builder') {
 			script {
 				try {
-		      		   uploadAssetToExchange("")
-                      deploy("")
+		      		   uploadAsset("")
+                      //deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -186,7 +186,7 @@ def build() {
     
 }
 
-def uploadAssetToExchange(apiName) {
+def uploadAsset(apiName) {
 url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/${MULE_ENV}/apis") 
 // Set the connection verb and headers
 def conn = url.openConnection() 
