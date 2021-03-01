@@ -187,7 +187,7 @@ def build() {
 }
 
 def uploadAsset(apiName) {
-url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/5b359f19-d053-4bfd-89f5-2865b64a812c/apis") 
+url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/cb3bd733-441f-4e5c-82be-bb0038c5f668/apis") 
 // Set the connection verb and headers
 def conn = url.openConnection() 
 conn.setRequestMethod("POST") 
