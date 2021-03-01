@@ -19,6 +19,7 @@ node {
                     def ANYPOINT_PLATFORM_URL=''
                     def MULESOFT_USER = ''
                     def MULESOFT_PASSWORD = ''
+		    def API_AUTODISCOVERY = ''
                    
 
                     env.BRANCH_NAME='develop';
