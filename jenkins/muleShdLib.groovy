@@ -191,7 +191,7 @@ url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/
 def conn = url.openConnection() 
 conn.setRequestMethod("POST") 
 conn.setRequestProperty("Content-Type", "application/json")
-conn.setRequestProperty("Content-Type", "Authorization:Bearer ${ACCESS_TOKEN}")
+conn.setRequestProperty("Authorization", "Bearer ${ACCESS_TOKEN}")
 
 // Required to send the request body of our POST 
 conn.doOutput = true 
