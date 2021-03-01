@@ -211,6 +211,7 @@ conn.doOutput = true
 ]
 def body = new JsonBuilder(data)
 body = body.toString()
+println body
 /*Build JSON Body*/
 /*def body = jsonBuilder {
            spec {
