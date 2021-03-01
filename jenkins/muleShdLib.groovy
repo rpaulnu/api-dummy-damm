@@ -203,9 +203,9 @@ println body
 //Send our request 
 conn.getOutputStream()
   .write(body.getBytes("UTF-8"));
-def postRC = post.getResponseCode();
+def postRC = conn.getResponseCode();
 println(postRC);
-    println(post.getInputStream().getText());
+    println(conn.getInputStream().getText());
 /*writer.write(body) 
 writer.flush() 
 writer.close() 
