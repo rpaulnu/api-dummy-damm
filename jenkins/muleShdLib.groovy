@@ -212,25 +212,7 @@ conn.doOutput = true
 def body = new JsonBuilder(data)
 body = body.toString()
 println body
-/*Build JSON Body*/
-/*def body = jsonBuilder {
-           spec {
-		 groupId "0994ed66-9d28-4904-8231-74516966ecdd"
-		 assetId "api-dummy-damm"
-		 version "1.0.0"
-		}
-	endpoint {
-		uri "https://some.implementation.com"
-		proxyUri "http://0.0.0.0:8081/"
-		isCloudHub true
-		}
-	instanceLabel "API de prueba"
-}*/
-
-		
-//body="{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}"
-//body='{"spec": {"groupId": "0994ed66-9d28-4904-8231-74516966ecdd","assetId": "api-dummy-damm","version": "1.0.0" },"endpoint": {"uri": "https://some.implementation.com","proxyUri": "http://0.0.0.0:8081/","isCloudHub": true  },"instanceLabel": "API de prueba"}'
-
+	
 // Create our JSON body  
 //Send our request 
 conn.getOutputStream()
@@ -238,16 +220,7 @@ conn.getOutputStream()
 def postRC = conn.getResponseCode();
 println(postRC);
     println(conn.getInputStream().getText());
-/*writer.write(body) 
-writer.flush() 
-writer.close() 
-conn.connect()
 
-
-println conn.content.text*/
-
-/*print url
-url.execute().text*/
 
 
 /*https://eu1.anypoint.mulesoft.com/apimanager/api/v1/organizations/{{organizationId}}/environments/{{environmentId}}/apis
