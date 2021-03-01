@@ -210,7 +210,7 @@ conn.doOutput = true
     instanceLabel: "API de prueba"
 ]
 def body = new JsonBuilder(data)
-println body.toString()
+body = body.toString()
 /*Build JSON Body*/
 /*def body = jsonBuilder {
            spec {
@@ -230,7 +230,6 @@ println body.toString()
 //body="{\"spec\": {\"groupId\": \"0994ed66-9d28-4904-8231-74516966ecdd\",\"assetId\": \"api-dummy-damm\",\"version\": \"1.0.0\" },\"endpoint\": {\"uri\": \"https://some.implementation.com\",\"proxyUri\": \"http://0.0.0.0:8081/\",\"isCloudHub\": true  },\"instanceLabel\": \"API de prueba\"}"
 //body='{"spec": {"groupId": "0994ed66-9d28-4904-8231-74516966ecdd","assetId": "api-dummy-damm","version": "1.0.0" },"endpoint": {"uri": "https://some.implementation.com","proxyUri": "http://0.0.0.0:8081/","isCloudHub": true  },"instanceLabel": "API de prueba"}'
 
-println body
 // Create our JSON body  
 //Send our request 
 conn.getOutputStream()
