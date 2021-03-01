@@ -231,7 +231,9 @@ url.execute().text*/
 
 def deploy(apiName) {
 
-    bat """
+    uploadAsset("")
+
+    /*bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
                 -Denvironment=${ENVIRONMENT} \
                 -Dmule.region=${REGION} \
@@ -246,7 +248,7 @@ def deploy(apiName) {
                 -Dmule.workers=${WORKERS} \
                 -DapplicationSuffix=${APPLICATION_SUFFIX} \
                 -Dmule.businessGroupId=${BUSINESS_GROUP_ID}
-    """
+    """*/
 }
 
 
