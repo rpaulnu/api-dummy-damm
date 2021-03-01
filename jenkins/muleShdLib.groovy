@@ -187,7 +187,7 @@ def build() {
 }
 
 def uploadAsset(apiName) {
-url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/${MULE_ENV}/apis") 
+url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/5b359f19-d053-4bfd-89f5-2865b64a812c/apis") 
 // Set the connection verb and headers
 def conn = url.openConnection() 
 conn.setRequestMethod("POST") 
@@ -220,7 +220,6 @@ conn.getOutputStream()
 def postRC = conn.getResponseCode();
 println(postRC);
     println(conn.getInputStream().getText());
-
 
 
 /*https://eu1.anypoint.mulesoft.com/apimanager/api/v1/organizations/{{organizationId}}/environments/{{environmentId}}/apis
