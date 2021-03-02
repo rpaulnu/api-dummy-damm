@@ -193,6 +193,8 @@ response = autoDiscover.parseText(conn.getInputStream().getText().toString());
 API_AUTODISCOVERY = response.id
 
 	println "${API_AUTODISCOVERY}"
+	
+response = null
 
 
 
