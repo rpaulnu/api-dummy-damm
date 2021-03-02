@@ -20,7 +20,7 @@ node {
                     def MULESOFT_USER = ''
                     def MULESOFT_PASSWORD = ''
 		    def API_AUTODISCOVERY = ''
-		    def slurper = new JsonSlurper()
+		    
                    
 
                     env.BRANCH_NAME='develop';
@@ -109,7 +109,7 @@ def retrieveMulesoftVariables() {
    
     response = "curl -H 'Content-Type: application/x-www-form-urlencoded' -X POST -d username=${MULESOFT_USER} -d password=${MULESOFT_PASSWORD} https://${ANYPOINT_PLATFORM_URL}/accounts/login".execute().text
 
-
+    def slurper = new JsonSlurper()
 
     ACCESS_TOKEN = slurper.parseText(response).access_token
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
@@ -189,10 +189,11 @@ println(postRC);
 
 //def autoDiscover = new JsonSlurper()
 response = slurper.parseText(conn.getInputStream().getText());
+	println response
 
 API_AUTODISCOVERY = response.id
 
-println API_AUTODISCOVERY
+	println ${API_AUTODISCOVERY}
 
 
 
