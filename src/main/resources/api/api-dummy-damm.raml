@@ -1,0 +1,76 @@
+#%RAML 1.0
+title: api-dummy-damm
+version: v1
+
+types:
+  id_model_1: !include datatypes-dummy-management/1.0.0/datatypes/id_model_1.raml
+  id_model_2: !include datatypes-dummy-management/1.0.0/datatypes/id_model_2.raml
+traits:
+  error-response: !include exchange_modules/0994ed66-9d28-4904-8231-74516966ecdd/error-responses/1.0.0/error-responses.raml
+
+/dummy:
+  is: [error-response]
+  get:
+    queryParameters:
+      param1:
+        type: number
+        required: false
+      param2:
+        type: string
+        required: false
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: string
+            example: "GET Done"
+            
+  post:
+    body:
+      application/json:
+        type: id_model_1
+        example: !include datatypes-dummy-management/1.0.0/examples/example-id_model_1.json
+    responses:
+      201:
+        body:
+          application/json:
+            type: string
+            example: "POST Done"
+
+  put:
+    body:
+      application/json:
+        type: id_model_1
+        example: !include datatypes-dummy-management/1.0.0/examples/example-id_model_1.json
+    responses:
+      204:
+        body:
+          application/json:
+            type: string
+            example: "PUT Done"
+    
+  patch:
+    body:
+      application/json:
+        type: id_model_1
+        example: !include datatypes-dummy-management/1.0.0/examples/example-id_model_1.json
+    responses:
+      204:
+        body:
+          application/json:
+            type: string
+            example: "PATCH Done"
+    
+  delete:
+    body:
+      application/json:
+        type: id_model_2
+        example: !include datatypes-dummy-management/1.0.0/examples/example-id_model_2.json
+          
+    responses:
+      204:
+        body:
+          application/json:
+            type: string
+            example: "DELETE Done"

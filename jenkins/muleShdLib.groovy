@@ -181,8 +181,9 @@ def runMulesoftPipeline(apiName) {
 def build() {
 
       //sh "mvn clean test"
-      bat "git clone -b develop https://github.com/rpaulnu/api-dummy-damm.git"
-      bat "cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn clean test"
+      /*bat "git clone -b develop https://github.com/rpaulnu/api-dummy-damm.git"
+      bat "cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn clean test"*/
+      println "build"
     
     
 }
@@ -211,6 +212,8 @@ conn.doOutput = true
     ],
     instanceLabel: "API de prueba"
 ]
+slurper = new JsonSlurper();
+
 def body = new JsonBuilder(data)
 body = body.toPrettyString()
 println body
@@ -221,8 +224,13 @@ conn.getOutputStream()
   .write(body.getBytes("UTF-8"));
 def postRC = conn.getResponseCode();
 println(postRC);
-    println(conn.getInputStream().getText());
+response = slurper.parseText(conn.getInputStream().getText());
 
+API_AUTODISCOVERY = response.apiId
+
+println API_AUTODISCOVERY
+
+bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: ${API_AUTODISCOVERY} >> config-dev.yaml"
 
 /*https://eu1.anypoint.mulesoft.com/apimanager/api/v1/organizations/{{organizationId}}/environments/{{environmentId}}/apis
     /*bat """
@@ -243,17 +251,17 @@ println(postRC);
 def deploy(apiName) {
 
 
-    bat """
+    /*bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
                 -Dmule.region=${REGION} \
-                -Dmule.applicationName=app-${apiName} \
+                -Dmule.applicationName=app-api-dummy-damm \
                 -Dmule.user=${MULESOFT_USER} \
                 -Dmule.password=${MULESOFT_PASSWORD} \
                 -Dmule.env=${MULE_ENV} \
                 -Dmule.businessGroup=${BUSINESS_GROUP_NAME} \
                 -Dmule.workerType=${WORKER_TYPE} \
                 -Dmule.workers=${WORKERS} \
-    """
+    """*/
 }
 
 
