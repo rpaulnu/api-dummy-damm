@@ -78,7 +78,7 @@ def setWorkspaceVariables(branch) {
 
     ANYPOINT_PLATFORM_URL = 'eu1.anypoint.mulesoft.com'
     WORKERS = '1'
-    WORKER_TYPE = 'Micro'
+    WORKER_TYPE = 'MICRO'
     REGION = 'eu-central-1'
     MULESOFT_USER = 'josegardu_damm'
     MULESOFT_PASSWORD = 'Cervantes12everis'
