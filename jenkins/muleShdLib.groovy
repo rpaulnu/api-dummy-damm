@@ -192,17 +192,16 @@ body = body.toPrettyString()
 //Send our request 
 conn.getOutputStream()
   .write(body.getBytes("UTF-8"));
-def postRC = conn.getResponseCode();
+def postRC = conn.getResponseCode().toString();
 println(postRC);
 	if(postRC.equals("201")){
 		println "Created"
 	}else{
 		error("Error while creating the instance")
-		System.exit(0)
 	}
 def autoDiscover = new JsonSlurper()
 response = autoDiscover.parseText(conn.getInputStream().getText().toString());
-	println response
+println response
 
 API_AUTODISCOVERY = response.id
 
