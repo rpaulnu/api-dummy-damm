@@ -212,7 +212,7 @@ conn.doOutput = true
     ],
     instanceLabel: "API de prueba"
 ]
-slurper = new JsonSlurper();
+def autoDiscover = new JsonSlurper();
 
 def body = new JsonBuilder(data)
 body = body.toPrettyString()
@@ -224,7 +224,7 @@ conn.getOutputStream()
   .write(body.getBytes("UTF-8"));
 def postRC = conn.getResponseCode();
 println(postRC);
-response = slurper.parseText(conn.getInputStream().getText());
+response = autoDiscover.parseText(conn.getInputStream().getText());
 
 API_AUTODISCOVERY = response.id
 
