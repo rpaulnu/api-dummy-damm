@@ -226,11 +226,11 @@ def postRC = conn.getResponseCode();
 println(postRC);
 response = slurper.parseText(conn.getInputStream().getText());
 
-API_AUTODISCOVERY = response.apiId
+API_AUTODISCOVERY = response.id
 
 println API_AUTODISCOVERY
 
-bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: ${API_AUTODISCOVERY} >> config-dev.yaml"
+bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: \"${API_AUTODISCOVERY}\" >> config-dev.yaml"
 
 /*https://eu1.anypoint.mulesoft.com/apimanager/api/v1/organizations/{{organizationId}}/environments/{{environmentId}}/apis
     /*bat """
