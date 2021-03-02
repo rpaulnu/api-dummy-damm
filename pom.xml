@@ -3,17 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>0994ed66-9d28-4904-8231-74516966ecdd</groupId>
-    <artifactId>app3-api-dummy-damm</artifactId>
-    <version>1.0.8</version>
+    <artifactId>api-dummy-damm</artifactId>
+    <version>1.0.0</version>
     <packaging>mule-application</packaging>
 
-    <name>app3-api-dummy-damm</name>
+    <name>api-dummy-damm</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <app.runtime>4.3.0-20201013</app.runtime>
+        <app.runtime>4.3.0</app.runtime>
         <mule.maven.plugin.version>3.3.6</mule.maven.plugin.version>
          <exchange.url>https://maven.eu1.anypoint.mulesoft.com/api/v1/organizations/0994ed66-9d28-4904-8231-74516966ecdd/maven</exchange.url>
     </properties>
@@ -31,17 +31,16 @@
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <!--Se deben pasar como parametros en el comando maven -->
                  <cloudHubDeployment>
                   <uri>https://eu1.anypoint.mulesoft.com</uri>
                   <muleVersion>${app.runtime}</muleVersion>
-                  <username>${mulesoft.user}</username>
-                  <password>${mulesoft.password}</password>
+                  <username>josegardu_damm</username>
+                  <password>Cervantes12everis</password>
                   <applicationName>${application.name}</applicationName>                 
-                  <environment>${mule.env}</environment>
-                  <region>${mule.region}</region>
-                  <workers>${mule.workers}</workers>                  
-                  <workerType>${mule.workerType}</workerType>
+                  <environment>DEV</environment>
+                  <region>eu-central-1</region>
+                  <workers>1</workers>
+                  <workerType>SMALL</workerType>
                   <objectStoreV2>true</objectStoreV2>
                  </cloudHubDeployment>
                 </configuration>
@@ -68,13 +67,6 @@
             <artifactId>mule-sockets-connector</artifactId>
             <version>1.2.0</version>
             <classifier>mule-plugin</classifier>
-        </dependency>
-        <dependency>
-            <groupId>0994ed66-9d28-4904-8231-74516966ecdd</groupId>
-            <artifactId>api-dummy-damm</artifactId>
-            <version>1.0.0</version>
-            <classifier>raml</classifier>
-            <type>zip</type>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
