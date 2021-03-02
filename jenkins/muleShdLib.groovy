@@ -21,11 +21,10 @@ node {
                     def MULESOFT_PASSWORD = ''
 		    def API_AUTODISCOVERY = ''
 		    
-                   println "${params.API_NAME}"
 
-                    env.BRANCH_NAME='develop';
+                   
 
-                    setWorkspaceVariables(env.BRANCH_NAME)
+                    setWorkspaceVariables(params.BRANCH)
 				} catch(Exception e) {
 					println "There has been an error setting workspace variables"
 					throw e
@@ -37,8 +36,7 @@ node {
 	stage ("Build & test project") {
 			script {
 				try {
-                    echo "build"
-                    build()
+                    build(params.API_NAME)
 				} catch(Exception e) {
 					println "There has been an error during testing stage"
 					throw e
@@ -48,7 +46,7 @@ node {
 	stage ("Create API Instance") {
 			script {
 				try {
-                    			uploadAsset("")
+                    	uploadAsset(params.API_NAME)
 				} catch(Exception e) {
 					println "There has been an error creating the API Instance"
 					throw e
@@ -62,13 +60,25 @@ node {
 			script {
 				try {
 			
-                    			deploy("")
+                    			deploy(params.API_NAME)
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
 				}
 			}
 	}
+
+	/*stage ("Notify") {
+
+			script {
+				try {
+						notifyBuildStatus(result, emailList)
+				} catch(Exception e) {
+					println "There has been an error deploying mulesoft API"
+					throw e
+				}
+			}
+	}*/
 }
 
 
@@ -80,8 +90,8 @@ def setWorkspaceVariables(branch) {
     WORKERS = '1'
     WORKER_TYPE = 'MICRO'
     REGION = 'eu-central-1'
-    MULESOFT_USER = 'josegardu_damm'
-    MULESOFT_PASSWORD = 'Cervantes12everis'
+    MULESOFT_USER = params.MULE_USER
+    MULESOFT_PASSWORD = params.MULE_PASSWORD
 
 
     if (branch.equals("master")) {
@@ -144,15 +154,14 @@ def retrieveMulesoftVariables() {
 def build(apiName) {
 
       //sh "mvn clean test"
-      bat "git clone -b develop https://github.com/rpaulnu/${apiName}.git"
+      bat "git clone -b ${params.BRANCH} https://github.com/rpaulnu/${apiName}.git"
       bat "cd ${apiName} & C:/opt/apache-maven-3.6.3/bin/mvn clean test"
     
     
 }
 @NonCPS
 def uploadAsset(apiName) {
-	println "upload asset"
-url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/cb3bd733-441f-4e5c-82be-bb0038c5f668/apis") 
+url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/${ENVIRONMENT_ID}/apis") 
 // Set the connection verb and headers
 def conn = url.openConnection() 
 conn.setRequestMethod("POST") 
@@ -185,15 +194,19 @@ conn.getOutputStream()
   .write(body.getBytes("UTF-8"));
 def postRC = conn.getResponseCode();
 println(postRC);
-
+	if(postRC.equals("201")){
+		println "Created"
+	}else{
+		error("Error while creating the instance")
+		System.exit(0)
+	}
 def autoDiscover = new JsonSlurper()
 response = autoDiscover.parseText(conn.getInputStream().getText().toString());
 	println response
 
 API_AUTODISCOVERY = response.id
 
-	println "${API_AUTODISCOVERY}"
-	
+
 response = null
 
 
@@ -215,7 +228,6 @@ response = null
 }
 
 def deploy(apiName) {
-	println "deploy"
 bat "cd ${apiName}/src/main/resources & echo autodiscovery: \"${API_AUTODISCOVERY}\" >> config-${ENVIRONMENT}.yaml"
 bat """
         cd ${apiName} & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
@@ -227,6 +239,8 @@ bat """
                 -Dmule.workerType=${WORKER_TYPE} \
                 -Dmule.workers=${WORKERS} \
     """
+    //borramos el directorio del proyecto del workspace
+bat "rmdir /q ${apiName}"
 }
 
 
@@ -268,7 +282,7 @@ def notifyBuild(buildStatus, qualityGate, emailList) {
 	    subject: subject,
 	    body: details,
 	    to: sendTo,
-	    attachLog: true,
-	    recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+	    attachLog: true
+	    //recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 	    )
 }
