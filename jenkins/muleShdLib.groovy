@@ -234,6 +234,7 @@ bat """
                 -Dmule.applicationName=app-${apiName} \
                 -Dmule.user=${MULESOFT_USER} \
                 -Dmule.password=${MULESOFT_PASSWORD} \
+                -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
                 -Dmule.env=${MULE_ENV} \
                 -Dmule.workerType=${WORKER_TYPE} \
                 -Dmule.workers=${WORKERS} \
