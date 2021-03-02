@@ -186,7 +186,7 @@ def build() {
     
     
 }
-
+@NonCPS
 def uploadAsset(apiName) {
 	println "upload asset"
 url = new URL("https://${ANYPOINT_PLATFORM_URL}/apimanager/api/v1/organizations/${BUSINESS_GROUP_ID}/environments/cb3bd733-441f-4e5c-82be-bb0038c5f668/apis") 
@@ -212,7 +212,6 @@ conn.doOutput = true
     ],
     instanceLabel: "API de prueba"
 ]
-def autoDiscover = new JsonSlurper();
 
 def body = new JsonBuilder(data)
 body = body.toPrettyString()
@@ -224,7 +223,7 @@ conn.getOutputStream()
   .write(body.getBytes("UTF-8"));
 def postRC = conn.getResponseCode();
 println(postRC);
-response = autoDiscover.parseText(conn.getInputStream().getText());
+response = slurper.parseText(conn.getInputStream().getText());
 
 API_AUTODISCOVERY = response.id
 
