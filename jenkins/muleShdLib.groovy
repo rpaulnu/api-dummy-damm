@@ -193,7 +193,7 @@ API_AUTODISCOVERY = response.id
 
 println API_AUTODISCOVERY
 
-bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: \"${API_AUTODISCOVERY}\" >> config-dev.yaml"
+
 
 /*https://eu1.anypoint.mulesoft.com/apimanager/api/v1/organizations/{{organizationId}}/environments/{{environmentId}}/apis
     /*bat """
@@ -213,7 +213,7 @@ bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: \"${API_AUTODISC
 
 def deploy(apiName) {
 	println "deploy"
-
+bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: \"${API_AUTODISCOVERY}\" >> config-dev.yaml"
     /*bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
                 -Dmule.region=${REGION} \
