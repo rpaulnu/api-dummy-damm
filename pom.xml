@@ -40,7 +40,7 @@
                   <environment>DEV</environment>
                   <region>${mule.region}</region>
                   <workers>${mule.workers}</workers>
-                  <workerType>${mule.WorkerType}</workerType>
+                  <workerType>${mule.workerType}</workerType>
                   <objectStoreV2>true</objectStoreV2>
                   <properties>
                     <anypoint.platform.analytics_base_uri>https://analytics-ingest.eu1.anypoint.mulesoft.com/</anypoint.platform.analytics_base_uri>
