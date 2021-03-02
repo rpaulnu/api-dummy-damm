@@ -45,7 +45,6 @@ node {
 			}
     }
 	stage ("Create API Instance") {
-		container('mule-builder') {
 			script {
 				try {
                     			uploadAsset("")
@@ -53,8 +52,7 @@ node {
 					println "There has been an error creating the API Instance"
 					throw e
 				}
-			}
-		}
+			}		
     }
 
 
