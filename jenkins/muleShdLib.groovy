@@ -181,9 +181,8 @@ def runMulesoftPipeline(apiName) {
 def build() {
 
       //sh "mvn clean test"
-      /*bat "git clone -b develop https://github.com/rpaulnu/api-dummy-damm.git"
-      bat "cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn clean test"*/
-      println "build"
+      bat "git clone -b develop https://github.com/rpaulnu/api-dummy-damm.git"
+      bat "cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn clean test"
     
     
 }
