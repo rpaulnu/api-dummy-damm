@@ -21,7 +21,7 @@ node {
                     def MULESOFT_PASSWORD = ''
 		    def API_AUTODISCOVERY = ''
 		    
-                   println ${params.API_NAME}
+                   println "${params.API_NAME}"
 
                     env.BRANCH_NAME='develop';
 
