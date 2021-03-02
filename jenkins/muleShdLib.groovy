@@ -187,8 +187,8 @@ conn.getOutputStream()
 def postRC = conn.getResponseCode();
 println(postRC);
 
-//def autoDiscover = new JsonSlurper()
-response = slurper.parseText(conn.getInputStream().getText());
+def autoDiscover = new JsonSlurper()
+response = autoDiscover.parseText(conn.getInputStream().getText());
 	println response
 
 API_AUTODISCOVERY = response.id
