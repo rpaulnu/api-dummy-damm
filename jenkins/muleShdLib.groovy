@@ -153,9 +153,21 @@ def runMulesoftPipeline(apiName) {
 		container('mule-builder') {
 			script {
 				try {
-                    build()
+                   			 build()
 				} catch(Exception e) {
 					println "There has been an error during testing stage"
+					throw e
+				}
+			}
+		}
+    }
+	stage ("Create API Instance") {
+		container('mule-builder') {
+			script {
+				try {
+                    			uploadAsset("")
+				} catch(Exception e) {
+					println "There has been an error creating the API Instance"
 					throw e
 				}
 			}
@@ -167,7 +179,7 @@ def runMulesoftPipeline(apiName) {
 		container('mule-builder') {
 			script {
 				try {
-		      		   uploadAsset("")
+					deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -250,7 +262,7 @@ bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: \"${API_AUTODISC
 }
 
 def deploy(apiName) {
-	uploadAsset("")
+	println "deploy"
 
     /*bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
