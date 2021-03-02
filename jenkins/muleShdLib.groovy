@@ -78,7 +78,7 @@ def setWorkspaceVariables(branch) {
 
     ANYPOINT_PLATFORM_URL = 'eu1.anypoint.mulesoft.com'
     WORKERS = '1'
-    WORKER_TYPE = 'Micro'
+    WORKER_TYPE = 'SMALL'
     REGION = 'eu-central-1'
     MULESOFT_USER = 'josegardu_damm'
     MULESOFT_PASSWORD = 'Cervantes12everis'
@@ -217,7 +217,7 @@ response = null
 def deploy(apiName) {
 	println "deploy"
 bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: \"${API_AUTODISCOVERY}\" >> config-dev.yaml"
-    /*bat """
+bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
                 -Dmule.region=${REGION} \
                 -Dmule.applicationName=app-api-dummy-damm \
@@ -227,7 +227,7 @@ bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: \"${API_AUTODISC
                 -Dmule.businessGroup=${BUSINESS_GROUP_NAME} \
                 -Dmule.workerType=${WORKER_TYPE} \
                 -Dmule.workers=${WORKERS} \
-    """*/
+    """
 }
 
 

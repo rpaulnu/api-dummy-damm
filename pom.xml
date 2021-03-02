@@ -34,14 +34,20 @@
                  <cloudHubDeployment>
                   <uri>https://eu1.anypoint.mulesoft.com</uri>
                   <muleVersion>${app.runtime}</muleVersion>
-                  <username>josegardu_damm</username>
-                  <password>Cervantes12everis</password>
-                  <applicationName>${application.name}</applicationName>                 
+                  <username>${mule.user}</username>
+                  <password>${mule.password}</password>
+                  <applicationName>${mule.applicationName}</applicationName>                 
                   <environment>DEV</environment>
-                  <region>eu-central-1</region>
-                  <workers>1</workers>
-                  <workerType>SMALL</workerType>
+                  <region>${mule.region}</region>
+                  <workers>${mule.workers}</workers>
+                  <workerType>${mule.WorkerType}</workerType>
                   <objectStoreV2>true</objectStoreV2>
+                  <properties>
+                    <anypoint.platform.analytics_base_uri>https://analytics-ingest.eu1.anypoint.mulesoft.com/</anypoint.platform.analytics_base_uri>
+                    <anypoint.platform.client_id>13691cb6a5194f2cbb2d3206e2278234</anypoint.platform.client_id>
+                    <anypoint.platform.client_secret>47b84B097A94471799266da97209895A</anypoint.platform.client_secret>
+                    <anypoint.platform.base_uri>https://eu1.anypoint.mulesoft.com/</anypoint.platform.base_uri>
+                    </properties>
                  </cloudHubDeployment>
                 </configuration>
             </plugin>
