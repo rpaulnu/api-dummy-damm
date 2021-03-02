@@ -21,7 +21,7 @@ node {
                     def MULESOFT_PASSWORD = ''
 		    def API_AUTODISCOVERY = ''
 		    
-                   
+                   println ${params.API_NAME}
 
                     env.BRANCH_NAME='develop';
 
@@ -141,11 +141,11 @@ def retrieveMulesoftVariables() {
 }
 
 
-def build() {
+def build(apiName) {
 
       //sh "mvn clean test"
-      bat "git clone -b develop https://github.com/rpaulnu/api-dummy-damm.git"
-      bat "cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn clean test"
+      bat "git clone -b develop https://github.com/rpaulnu/${apiName}.git"
+      bat "cd ${apiName} & C:/opt/apache-maven-3.6.3/bin/mvn clean test"
     
     
 }
@@ -163,8 +163,8 @@ conn.setRequestProperty("Authorization", "Bearer ${ACCESS_TOKEN}")
 conn.doOutput = true
 	def data = [
     spec: [
-        groupId: "0994ed66-9d28-4904-8231-74516966ecdd",
-	assetId: "api-dummy-damm",
+        groupId: "${BUSINESS_GROUP_ID}",
+	assetId: "${apiName}",
 	version: "1.0.0"
     ],
     endpoint: [
@@ -216,11 +216,11 @@ response = null
 
 def deploy(apiName) {
 	println "deploy"
-bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: \"${API_AUTODISCOVERY}\" >> config-dev.yaml"
+bat "cd ${apiName}/src/main/resources & echo autodiscovery: \"${API_AUTODISCOVERY}\" >> config-${ENVIRONMENT}.yaml"
 bat """
-        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
+        cd ${apiName} & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
                 -Dmule.region=${REGION} \
-                -Dmule.applicationName=app-api-dummy-damm \
+                -Dmule.applicationName=app-${apiName} \
                 -Dmule.user=${MULESOFT_USER} \
                 -Dmule.password=${MULESOFT_PASSWORD} \
                 -Dmule.env=${MULE_ENV} \
