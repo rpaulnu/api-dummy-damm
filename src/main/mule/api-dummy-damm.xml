@@ -5,7 +5,7 @@ http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/m
         <http:listener-connection host="0.0.0.0" port="8081" />
     </http:listener-config>
     <apikit:config name="api-dummy-damm-config" api="api-dummy-damm.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
-    <configuration-properties doc:name="Configuration properties" doc:id="6b3c1c03-7ff3-412f-8878-e6bd7e0981bd" file="config-dev.yaml" />
+    <configuration-properties doc:name="Configuration properties" doc:id="6b3c1c03-7ff3-412f-8878-e6bd7e0981bd" file="config-DEV.yaml" />
 	<api-gateway:autodiscovery apiId="${autodiscovery}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="f4ab6577-6e4a-44df-9e5a-4de2fad34476" flowRef="api-dummy-damm-main" />
 	<flow name="api-dummy-damm-main">
         <http:listener config-ref="api-dummy-damm-httpListenerConfig" path="/api/*">
