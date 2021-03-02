@@ -44,6 +44,18 @@ node {
 				}
 			}
     }
+	stage ("Create API Instance") {
+		container('mule-builder') {
+			script {
+				try {
+                    			uploadAsset("")
+				} catch(Exception e) {
+					println "There has been an error creating the API Instance"
+					throw e
+				}
+			}
+		}
+    }
 
 
     stage ("Deploy to Anypoint Platform") {
@@ -51,7 +63,7 @@ node {
 			script {
 				try {
 			
-                    deploy("")
+                    			deploy("")
 				} catch(Exception e) {
 					println "There has been an error deploying mulesoft API"
 					throw e
@@ -129,66 +141,6 @@ def retrieveMulesoftVariables() {
 
 }
 
-def runMulesoftPipeline(apiName) {
-	environment {
-        BRANCH_NAME = 'develop'
-    }
-
-
-	stage ("Set configuration variables") {
-		container('mule-builder') {
-			script {
-				try {
-                    setWorkspaceVariables(env.BRANCH_NAME)
-				} catch(Exception e) {
-					println "There has been an error setting workspace variables"
-					throw e
-				}
-			}
-		}
-	}
-
-
-	stage ("Build & test project") {
-		container('mule-builder') {
-			script {
-				try {
-                   			 build()
-				} catch(Exception e) {
-					println "There has been an error during testing stage"
-					throw e
-				}
-			}
-		}
-    }
-	stage ("Create API Instance") {
-		container('mule-builder') {
-			script {
-				try {
-                    			uploadAsset("")
-				} catch(Exception e) {
-					println "There has been an error creating the API Instance"
-					throw e
-				}
-			}
-		}
-    }
-
-
-    stage ("Deploy to Anypoint Platform") {
-		container('mule-builder') {
-			script {
-				try {
-					deploy("")
-				} catch(Exception e) {
-					println "There has been an error deploying mulesoft API"
-					throw e
-				}
-			}
-		}
-	}
-
-}
 
 def build() {
 
