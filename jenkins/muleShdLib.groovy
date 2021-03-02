@@ -178,7 +178,6 @@ conn.doOutput = true
 
 def body = new JsonBuilder(data)
 body = body.toPrettyString()
-println body
 	
 // Create our JSON body  
 //Send our request 
@@ -188,12 +187,12 @@ def postRC = conn.getResponseCode();
 println(postRC);
 
 def autoDiscover = new JsonSlurper()
-response = autoDiscover.parseText(conn.getInputStream().getText());
+response = autoDiscover.parseText(conn.getInputStream().getText().toString());
 	println response
 
 API_AUTODISCOVERY = response.id
 
-	println ${API_AUTODISCOVERY}
+	println "${API_AUTODISCOVERY}"
 
 
 
