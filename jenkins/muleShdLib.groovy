@@ -249,7 +249,7 @@ bat "cd api-dummy-damm/src/main/resources & echo autodiscovery: ${API_AUTODISCOV
 }
 
 def deploy(apiName) {
-
+	uploadAsset("")
 
     /*bat """
         cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
