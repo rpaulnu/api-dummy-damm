@@ -55,7 +55,7 @@ node {
     }
 
 
-    stage ("Deploy to Anypoint Platform") {
+    /*stage ("Deploy to Anypoint Platform") {
 
 			script {
 				try {
@@ -66,19 +66,8 @@ node {
 					throw e
 				}
 			}
-	}
-
-	/*stage ("Notify") {
-
-			script {
-				try {
-						notifyBuildStatus(result, emailList)
-				} catch(Exception e) {
-					println "There has been an error deploying mulesoft API"
-					throw e
-				}
-			}
 	}*/
+
 }
 
 
@@ -210,11 +199,10 @@ response = null
 
 
 
-/*https://eu1.anypoint.mulesoft.com/apimanager/api/v1/organizations/{{organizationId}}/environments/{{environmentId}}/apis
-    /*bat """
-        cd api-dummy-damm & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests \
+    bat """
+        cd ${apiName} & C:/opt/apache-maven-3.6.3/bin/mvn -B deploy -DskipTests \
                 -Denvironment=${ENVIRONMENT} \
-                -Dmule.applicationName=app-api-dummy-damm \
+                -Dmule.applicationName=${apiName} \
                 -Danypoint.username=${MULESOFT_USER} \
                 -Danypoint.password=${MULESOFT_PASSWORD} \
                 -Danypoint.platform.client_id=${ANYPOINT_PLATFORM_CLIENT_ID} \
@@ -223,10 +211,10 @@ response = null
                 -Dmule.businessGroup=${BUSINESS_GROUP_NAME} \
                 -DapplicationSuffix=${APPLICATION_SUFFIX} \
                 -Dmule.businessGroupId=${BUSINESS_GROUP_ID}
-    """*/
+    """
 }
 
-def deploy(apiName) {
+/*def deploy(apiName) {
 bat "cd ${apiName}/src/main/resources & echo autodiscovery: \"${API_AUTODISCOVERY}\" >> config-${ENVIRONMENT}.yaml"
 bat """
         cd ${apiName} & C:/opt/apache-maven-3.6.3/bin/mvn -B package deploy -DskipTests -DmuleDeploy \
@@ -285,4 +273,4 @@ def notifyBuild(buildStatus, qualityGate, emailList) {
 	    attachLog: true
 	    //recipientProviders: [[$class: 'DevelopersRecipientProvider']]
 	    )
-}
+}*/

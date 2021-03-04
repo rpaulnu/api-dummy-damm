@@ -31,24 +31,7 @@
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                 <cloudHubDeployment>
-                  <uri>https://eu1.anypoint.mulesoft.com</uri>
-                  <muleVersion>${app.runtime}</muleVersion>
-                  <username>${mule.user}</username>
-                  <password>${mule.password}</password>
-                  <applicationName>${mule.applicationName}</applicationName>                 
-                  <environment>${mule.env}</environment>
-                  <region>${mule.region}</region>
-                  <workers>${mule.workers}</workers>
-                  <workerType>${mule.workerType}</workerType>
-                  <objectStoreV2>true</objectStoreV2>
-                  <properties>
-                    <anypoint.platform.analytics_base_uri>https://analytics-ingest.eu1.anypoint.mulesoft.com/</anypoint.platform.analytics_base_uri>
-                    <anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
-                    <anypoint.platform.client_secret>47b84B097A94471799266da97209895A</anypoint.platform.client_secret>
-                    <anypoint.platform.base_uri>https://eu1.anypoint.mulesoft.com/</anypoint.platform.base_uri>
-                    </properties>
-                 </cloudHubDeployment>
+              
                 </configuration>
             </plugin>
         </plugins>
@@ -60,6 +43,12 @@
             <url>${exchange.url}</url>
             <layout>default</layout>
         </repository>
+        <repository>
+ 			<id>sempoc-central</id>
+ 			<name>SEM-PoC Maven DEV Local</name>
+ 			<url>http://example.com/artifactory/example-repo-local/</url>
+ 		</repository>
+
     </distributionManagement>
     <dependencies>
         <dependency>
