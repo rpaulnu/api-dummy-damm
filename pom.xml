@@ -43,11 +43,11 @@
             <url>${exchange.url}</url>
             <layout>default</layout>
         </repository>
-        <repository>
+        <!--<repository>
  			<id>sempoc-central</id>
  			<name>SEM-PoC Maven DEV Local</name>
  			<url>http://example.com/artifactory/example-repo-local/</url>
- 		</repository>
+ 		</repository>-->
 
     </distributionManagement>
     <dependencies>
