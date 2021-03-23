@@ -119,8 +119,9 @@ def retrieveMulesoftVariables() {
     BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[0].name
 	println BUSINESS_GROUP_NAME
     ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[0].clientId
+	println  ANYPOINT_PLATFORM_CLIENT_ID
     BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[0].id
-
+	println BUSINESS_GROUP_ID
 
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/organizations/${BUSINESS_GROUP_ID}/environments -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     
