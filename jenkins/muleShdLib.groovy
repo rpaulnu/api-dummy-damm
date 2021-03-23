@@ -117,6 +117,7 @@ def retrieveMulesoftVariables() {
 	println response
 
     BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[0].name
+	println BUSINESS_GROUP_NAME
     ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[0].clientId
     BUSINESS_GROUP_ID = response.user.contributorOfOrganizations[0].id
 
