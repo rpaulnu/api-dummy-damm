@@ -33,7 +33,7 @@ node {
 	}
 
 
-	stage ("Build & test project") {
+	/*stage ("Build & test project") {
 			script {
 				try {
                     build(params.API_NAME)
@@ -43,7 +43,7 @@ node {
 				}
 			}
     }
-	stage ("Create API Instance") {
+	/*stage ("Create API Instance") {
 			script {
 				try {
                     	uploadAsset(params.API_NAME)
@@ -52,7 +52,7 @@ node {
 					throw e
 				}
 			}		
-    }
+    }*/
 
 
     /*stage ("Deploy to Anypoint Platform") {
@@ -113,6 +113,8 @@ def retrieveMulesoftVariables() {
     ACCESS_TOKEN = slurper.parseText(response).access_token
     url = "curl -s -X GET https://${ANYPOINT_PLATFORM_URL}/accounts/api/me -H \"Authorization:Bearer ${ACCESS_TOKEN}\""
     response = slurper.parseText(url.execute().text)
+	
+	println response
 
     BUSINESS_GROUP_NAME = response.user.contributorOfOrganizations[0].name
     ANYPOINT_PLATFORM_CLIENT_ID = response.user.contributorOfOrganizations[0].clientId
